@@ -1,7 +1,10 @@
-import 'package:app_news_flutter/data/models/news_model.dart';
+import 'package:app_news_flutter/presentation/news/views/news_detail_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:random_avatar/random_avatar.dart';
+
+import '../../../data/models/news_model.dart';
 
 class CardListNews extends StatelessWidget {
   final NewsModel newsModel;
@@ -19,7 +22,7 @@ class CardListNews extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: .circular(12.0),
+              borderRadius: BorderRadius.circular(12.0),
               child: CachedNetworkImage(
                 imageUrl: newsModel.imageUrl ?? "",
                 height: 180,
@@ -42,7 +45,7 @@ class CardListNews extends StatelessWidget {
                 context,
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               maxLines: 2,
-              overflow: .ellipsis,
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 6),
             Text(
@@ -71,20 +74,18 @@ class CardListNews extends StatelessWidget {
                         child: const Icon(Icons.person, color: Colors.white),
                       ),
                     const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        newsModel.formatAuthorDisplay,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
+                    Text(
+                      newsModel.formatAuthorDisplay,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
                 ),
                 TextButton(
                   onPressed: () {
-                    // Get.to(() => NewsDetailView(news: newsModel));
+                    Get.to(() => NewsDetailView(news: newsModel));
                   },
-                  child: Text(
+                  child: const Text(
                     "Read More...",
                     style: TextStyle(color: Colors.blueAccent),
                   ),

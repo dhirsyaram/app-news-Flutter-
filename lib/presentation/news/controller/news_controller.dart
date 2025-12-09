@@ -2,27 +2,31 @@ import 'package:app_news_flutter/data/models/news_model.dart';
 import 'package:app_news_flutter/data/services/news_service.dart';
 import 'package:get/get.dart';
 
+
 class NewsController extends GetxController {
   var isLoading = true.obs;
   var newsList = <NewsModel>[].obs;
 
+  final NewsService service;
+
+  NewsController(this.service);
+
   @override
   void onInit() {
+    getNewsList();
     super.onInit();
-    print("NewsController dibuat!");
-    fetchNews();
   }
 
-  Future<void> fetchNews() async {
+  void getNewsList() async {
     try {
-      isLoading.value = true;
-      final data = await NewsService.getNews();
-      newsList.assignAll(data);
+      isLoading(true);
+      final dataNews = await service.getNews();
+      newsList.assignAll(dataNews);
     } catch (e) {
-      print("Error fetching news: $e");
+      print(e);
       newsList.clear();
     } finally {
-      isLoading.value = false;
+      isLoading(false);
     }
   }
 }

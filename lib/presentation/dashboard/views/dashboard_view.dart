@@ -1,6 +1,5 @@
 import 'package:app_news_flutter/presentation/dashboard/widgets/card_corrective_machine.dart';
-import 'package:app_news_flutter/presentation/dashboard/widgets/card_spare_part_usage.dart';
-import 'package:app_news_flutter/presentation/dashboard/widgets/card_trouble_by_area.dart';
+import 'package:app_news_flutter/presentation/dashboard/widgets/card_trouble_by_area_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardView extends StatelessWidget {
@@ -8,12 +7,10 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        CardCorrectiveMachine(),
-        CardTroubleByArea(),
-        CardSparePartUsage(),
-      ],
+    return const Center(
+      child: Column(
+        children: [CardCorrectiveMachine(), CardTroubleByAreaWidget()],
+      ),
     );
   }
 }
