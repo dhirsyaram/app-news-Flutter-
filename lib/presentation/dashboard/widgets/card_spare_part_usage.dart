@@ -28,7 +28,6 @@ class CardSparePartUsage extends StatelessWidget {
                 DropdownMenuItem(value: "Steel", child: Text("Steel")),
               ],
               onChanged: (val) {
-                // TODO: handle change (misalnya update state dengan GetX)
               },
             ),
             const SizedBox(height: 12),

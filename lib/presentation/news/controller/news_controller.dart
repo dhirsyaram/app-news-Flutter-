@@ -9,14 +9,18 @@ class NewsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    print("NewsController dibuat!");
     fetchNews();
   }
 
-  void fetchNews() async {
+  Future<void> fetchNews() async {
     try {
       isLoading.value = true;
       final data = await NewsService.getNews();
       newsList.assignAll(data);
+    } catch (e) {
+      print("Error fetching news: $e");
+      newsList.clear();
     } finally {
       isLoading.value = false;
     }
